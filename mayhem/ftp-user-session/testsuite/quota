@@ -1,0 +1,18 @@
+USER joe
+PASS secret
+SITE IDLE 120
+STOR q1
+STOR q2
+STOR q3
+MKD qd
+CWD qd
+STOR q4
+CDUP
+DELE q1
+RNFR q2
+RNTO qd/q2
+DELE qd/q2
+DELE qd/q4
+RMD qd
+STAT
+QUIT

@@ -1,0 +1,14 @@
+project: savantenvs/pure-ftpd
+target: ftpd-config
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/ftpd-config/testsuite
+
+cmds:
+  # The fuzz input is a pure-ftpd.conf; the server turns it into options, then serves a fixed session.
+  - cmd: /mayhem/mayhem/out/pure-ftpd-inetd @@
+    env:
+      FTPD_SHIM_HOME: /tmp/pure-ftpd-home
+      FTP_ANON_DIR: /mayhem/mayhem/ftp-session/ftproot
+      FTPD_SHIM_SCRIPT: 'USER anonymous\r\nPASS x\r\nPWD\r\nSYST\r\nFEAT\r\nSTAT\r\nQUIT\r\n'
+    timeout: 10

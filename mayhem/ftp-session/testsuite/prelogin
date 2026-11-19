@@ -1,0 +1,9 @@
+FEAT
+HELP
+AUTH TLS
+USER
+PASS
+USER root
+PASS root
+USER ../../etc
+QUIT

@@ -1,0 +1,16 @@
+project: savantenvs/pure-ftpd
+target: ftp-user-session
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/ftp-user-session/testsuite
+
+cmds:
+  # The fuzz input is the FTP control connection (stdin -> inetd_shim.c -> fd 0 socket) of a
+  # logged-in PureDB user (joe/secret, 100-file / 50 MB quota, home /tmp/pure-ftpd-home/./ with
+  # virtual chroot), so the write/modify handlers (MKD/RMD/DELE/RNFR/RNTO/STOR/APPE/SITE CHMOD/
+  # MFMT/SITE UTIME) run their bodies. The shim empties FTPD_SHIM_HOME before every input, so
+  # nothing one input creates is seen by the next. No DNS (-H), no anonymous logins (-E).
+  - cmd: /mayhem/mayhem/out/pure-ftpd-inetd -H -E -l puredb:/mayhem/mayhem/ftp-user-session/users.pdb
+    env:
+      FTPD_SHIM_HOME: /tmp/pure-ftpd-home
+    timeout: 10

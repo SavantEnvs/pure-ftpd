@@ -1,0 +1,21 @@
+USER joe
+PASS secret
+TYPE I
+ALLO 1024
+ALLO 999999999999
+STOR a.txt
+APPE a.txt
+STOU
+SIZE a.txt
+MDTM a.txt
+RNFR a.txt
+RNTO b.txt
+RNFR b.txt
+RNTO .hidden
+DELE b.txt
+DELE .hidden
+DELE nope
+REST 10
+STOR c.txt
+STAT
+QUIT

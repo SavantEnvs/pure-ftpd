@@ -1,0 +1,14 @@
+project: savantenvs/pure-ftpd
+target: ftp-session
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/ftp-session/testsuite
+
+cmds:
+  # The fuzz input is the FTP control connection (stdin -> inetd_shim.c -> fd 0 socket):
+  # anonymous-only server (-e) without anonymous uploads (-i), no DNS (-H).
+  - cmd: /mayhem/mayhem/out/pure-ftpd-inetd -H -e -i
+    env:
+      FTPD_SHIM_HOME: /tmp/pure-ftpd-home
+      FTP_ANON_DIR: /mayhem/mayhem/ftp-session/ftproot
+    timeout: 10

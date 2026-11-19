@@ -1,0 +1,13 @@
+USER ftp
+PASS x
+OPTS MLST type;size;modify;perm;unique;
+MLST .
+MLST pub
+CWD pub
+MLST README
+CWD docs
+PWD
+CDUP
+CDUP
+MLST hello.txt
+QUIT

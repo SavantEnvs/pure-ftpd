@@ -1,0 +1,13 @@
+project: savantenvs/pure-ftpd
+target: ftp-puredb-login
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/ftp-puredb-login/testsuite
+
+cmds:
+  # The fuzz input is the PureDB user database (-l puredb:@@); a fixed client session logs in as joe.
+  - cmd: /mayhem/mayhem/out/pure-ftpd-inetd -H -E -l puredb:@@
+    env:
+      FTPD_SHIM_HOME: /tmp/pure-ftpd-home
+      FTPD_SHIM_SCRIPT: 'USER joe\r\nPASS secret\r\nPWD\r\nSTAT\r\nMLST .\r\nSITE IDLE 60\r\nQUIT\r\n'
+    timeout: 10

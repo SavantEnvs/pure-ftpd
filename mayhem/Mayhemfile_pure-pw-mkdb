@@ -1,0 +1,10 @@
+project: savantenvs/pure-ftpd
+target: pure-pw-mkdb
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/pure-pw-mkdb/testsuite
+
+cmds:
+  # The fuzz input is a pure-pw passwd file; mkdb parses every line and writes ./out.pdb.
+  - cmd: /mayhem/mayhem/out/pure-pw mkdb out.pdb -f @@
+    timeout: 5

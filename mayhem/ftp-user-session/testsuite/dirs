@@ -1,0 +1,20 @@
+USER joe
+PASS secret
+PWD
+MKD dir1
+MKD dir1
+CWD dir1
+PWD
+MKD sub
+CDUP
+XMKD dir2
+XCWD dir2
+XCUP
+RNFR dir2
+RNTO dir3
+RMD dir3
+XRMD dir1/sub
+RMD dir1
+RMD nope
+MKD ../escape
+QUIT

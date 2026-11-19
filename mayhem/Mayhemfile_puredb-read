@@ -1,0 +1,10 @@
+project: savantenvs/pure-ftpd
+target: puredb-read
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/puredb-read/testsuite
+
+cmds:
+  - cmd: /mayhem/mayhem/out/fuzz_puredb_read
+    libfuzzer: true
+    timeout: 5

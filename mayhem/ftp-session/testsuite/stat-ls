@@ -1,0 +1,8 @@
+USER anonymous
+PASS x
+STAT -la
+STAT pub/*
+STAT -R .
+STAT p*/d*/*.txt
+STAT {a,b}*
+QUIT

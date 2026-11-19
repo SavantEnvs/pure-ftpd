@@ -1,0 +1,20 @@
+USER anonymous
+PASS x
+HELP
+SITE HELP
+SITE IDLE 300
+SITE TIME
+SITE CHMOD 644 hello.txt
+RNFR hello.txt
+RNTO x.txt
+DELE hello.txt
+MKD newdir
+STOR up.txt
+ALLO 100
+MODE S
+STRU F
+OPTS UTF8 ON
+CLNT test
+ESTA
+ESTP
+QUIT

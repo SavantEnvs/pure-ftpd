@@ -1,0 +1,11 @@
+USER anonymous
+PASS guest@
+SYST
+FEAT
+PWD
+TYPE I
+SIZE hello.txt
+MDTM hello.txt
+STAT
+NOOP
+QUIT
